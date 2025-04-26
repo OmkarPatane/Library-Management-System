@@ -3,6 +3,7 @@ const cors=require("cors")
 const connectionToDB = require("./config/mongoDb.config")
 const UserRouter = require("./routes/user.route")
 const BookRouter = require("./routes/book.route")
+const ProfileRoute = require("./routes/profile.route")
 require("dotenv").config()
 
 const PORT=process.env.PORT || 5000
@@ -19,6 +20,8 @@ app.get("/healthy",(req,res)=>{
 
 //user routes
 app.use("/users",UserRouter)
+//Profile creation route
+app.use("/profile",ProfileRoute)
 
 //book routes
 app.use("/books",BookRouter)
