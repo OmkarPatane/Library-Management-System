@@ -32,6 +32,25 @@ export const loginUser = async (userData) => {
   }
 };
 
+//user profile creation
+export const createProfile= async (userData)=>{
+  try {
+    const token = localStorage.getItem("token");
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+    const response=await API.post("/profile/create-profile",userData,config)
+    return response.data
+  } catch (error) {
+    console.log("Error while creating the error ")
+    throw error;
+  }
+}
+
+
 // Books API (for user dashboard)
 export const getBooks = async (searchParams = {}) => {
   try {

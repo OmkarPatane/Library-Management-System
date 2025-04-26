@@ -16,7 +16,7 @@ import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
-  const { isLoggedIn, logout, userRole } = useAuth();
+  const { isLoggedIn, logout, userRole, isProfileCreated } = useAuth();
 
   return (
     <Box>
@@ -109,6 +109,28 @@ function Navbar() {
               >
                 Dashboard
               </Button>
+              {!isProfileCreated ? (
+                <Button
+                  as={RouterLink}
+                  fontSize="sm"
+                  fontWeight={400}
+                  variant="link"
+                  to="/create-profile" // or your create profile route
+                >
+                  Create Profile
+                </Button>
+              ) : (
+                <Button
+                  as={RouterLink}
+                  fontSize="sm"
+                  fontWeight={400}
+                  variant="link"
+                  to="/profile" // your profile page
+                >
+                  Profile
+                </Button>
+              )}
+
               <Button
                 fontSize="sm"
                 fontWeight={600}
@@ -168,10 +190,9 @@ function Navbar() {
               <Box py={2}>
                 <Button
                   as={RouterLink}
-                  w="full"
                   fontSize="sm"
                   fontWeight={400}
-                  variant="ghost"
+                  variant="link"
                   to={
                     userRole === "librarian"
                       ? "/dashboard/librarian"
@@ -180,6 +201,29 @@ function Navbar() {
                 >
                   Dashboard
                 </Button>
+              </Box>
+              <Box py={2}>
+                {!isProfileCreated ? (
+                  <Button
+                    as={RouterLink}
+                    fontSize="sm"
+                    fontWeight={400}
+                    variant="link"
+                    to="/create-profile" // or your create profile route
+                  >
+                    Create Profile
+                  </Button>
+                ) : (
+                  <Button
+                    as={RouterLink}
+                    fontSize="sm"
+                    fontWeight={400}
+                    variant="link"
+                    to="/profile" // your profile page
+                  >
+                    Profile
+                  </Button>
+                )}
               </Box>
               <Box py={2}>
                 <Button

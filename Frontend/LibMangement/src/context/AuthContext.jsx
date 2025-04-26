@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [userRole, setUserRole] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [loading, setLoading] = useState(true);
+  const [isProfileCreated, setIsProfileCreated] = useState(false);
 
   useEffect(() => {
     if (token) {
@@ -40,6 +41,7 @@ export const AuthProvider = ({ children }) => {
     setToken(null);
     setUserRole(null);
     setIsLoggedIn(false);
+    setIsProfileCreated(false);
   };
 
   const value = {
@@ -49,6 +51,8 @@ export const AuthProvider = ({ children }) => {
     login,
     logout,
     loading,
+    setIsProfileCreated,
+    isProfileCreated,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
